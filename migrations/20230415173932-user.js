@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      documment: {
+      document: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true

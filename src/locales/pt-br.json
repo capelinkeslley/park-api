@@ -1,0 +1,8 @@
+{
+	"name": "nome",
+	"email": "E-mail",
+	"document": "CPF",
+	"phone": "Telefone",
+	"unique violation": "já esta em uso",
+	"empty": "não pode ser nulo"
+}
