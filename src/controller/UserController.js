@@ -2,11 +2,11 @@ const { __ } = require("i18n");
 const userValidator = require('../validators/UserValidators');
 const User = require("../../models/User");
 const UserError = require("../error/UserError");
-
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   async create(req, res){
-    const { name, email, document, phone } = req.body;
+    const { name, email, document, phone, password } = req.body;
     const { error } = userValidator.validate(req.body)
 
     if(error){
@@ -17,13 +17,24 @@ module.exports = {
 
       return res.json(UserError.handlerError(err));
     }else{
-      try {
-        const user = await User.create({name, email, document, phone});
-
-        return res.json(user);
-      }catch (err){
-        return res.json(UserError.handlerError(err.errors));
-      }
+      bcrypt.genSalt(6, (err, salt) =>{
+        if(err){
+          return res.status(500).json({ message: err.message });
+        }
+        console.log("A senha é: " + password);
+        bcrypt.hash(password, salt, (err, password) => {
+          if(err){
+            return res.status(500).json({ message: err.message });
+          }
+          console.log("A senha é: " + password);
+          User.create({name, email, document, phone, password}).then(user => {
+            return res.json(user);
+          }).catch(err => {
+            console.log(err)
+            return res.json({message: err.message});
+          });
+        });
+      });
     }
   },
 

@@ -6,6 +6,7 @@ const User = sequelize.define("users", {
   email: DataTypes.STRING,
   document: DataTypes.STRING,
   phone: DataTypes.INTEGER,
+  password: DataTypes.STRING,
 },{
   timestamps: true,
 });

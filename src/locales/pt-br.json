@@ -4,5 +4,7 @@
 	"document": "CPF",
 	"phone": "Telefone",
 	"unique violation": "já esta em uso",
-	"empty": "não pode ser nulo"
+	"empty": "não pode ser nulo",
+	"password": "Senha",
+	"required": "não pode ser nulo"
 }
