@@ -2,7 +2,9 @@ const express = require("express");
 const routes = require("./routes");
 const i18n = require('i18n');
 const path = require("path");
+const dotenv = require('dotenv');
 
+dotenv.config();
 
 i18n.configure({
   locales: ['en', 'pt-br'],

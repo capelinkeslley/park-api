@@ -15,7 +15,7 @@ module.exports = {
 
       bcrypt.compare(password, user.password).then(isMatch => {
         if(isMatch){
-          const token = jwt.sign({id: user.id}, 'secret', {expiresIn: '1d'});
+          const token = jwt.sign({id: user.id}, 'process.env.SECRET_KEY', {expiresIn: '1d'});
           res.json({token});
         }else{
           res.status(401).json({message: 'Senha incorreta'});
